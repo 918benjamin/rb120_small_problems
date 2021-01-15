@@ -7,7 +7,8 @@
 
 
 class Cat
-  attr_accessor :name
+  attr_reader :name
+  attr_writer :name
 
   def initialize(name)
     @name = name
