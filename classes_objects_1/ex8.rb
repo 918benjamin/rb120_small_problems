@@ -1,9 +1,14 @@
-# Using the code from the previous exercise, replace the getter and setter
-# methods using Ruby shorthand.
+# Using the code from the previous exercise, add a setter method named #name.
+# Then, rename kitty to 'Luna' and invoke #greet again.
+
+# Expected output:
+# Hello! My name is Sophie!
+# Hello! My name is Luna!
 
 
 class Cat
-  attr_accessor :name
+  attr_reader :name
+  attr_writer :name
 
   def initialize(name)
     @name = name
@@ -16,5 +21,5 @@ end
 
 kitty = Cat.new('Sophie')
 kitty.greet
-kitty.name = 'Luna'
+kitty.name = "Luna"
 kitty.greet
