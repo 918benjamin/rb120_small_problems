@@ -25,8 +25,6 @@ class Card
     "#{rank} of #{suit}"
   end
 
-  protected
-
   def value
     RANK_VALUES.fetch(rank, rank)
   end
@@ -99,9 +97,21 @@ class PokerHand
   attr_reader :hand, :deck
 
   def royal_flush?
+    straight? && flush? && royal?
+  end
+
+  def royal?
+    values = []
+    hand.each do |card|
+      values << card.value
+    end
+
+    values.sort!
+    values[0] == 10 && values[-1] == 14
   end
 
   def straight_flush?
+    straight? && flush?
   end
 
   def four_of_a_kind?
@@ -113,9 +123,21 @@ class PokerHand
   end
 
   def flush?
+    suits = []
+    hand.each do |card|
+      suits << card.suit
+    end
+    suits.uniq.length == 1
   end
 
   def straight?
+    values = []
+    hand.each do |card|
+      values << card.value
+    end
+
+    values.sort!
+    values == (values[0]..values[-1]).to_a
   end
 
   def three_of_a_kind?
